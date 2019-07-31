@@ -17,7 +17,7 @@ const picArray = cardsData
       return picArray;
     };
   
-    let arrayOfJsx = picArray.map( item => <img className="card" key={item.id} data-id={item.id} src={item.img} alt={item.id}  /> )
+    let arrayOfJsx = picArray.map( item => <img onClick={} className="card" key={item.id} data-id={item.id} src={item.img} alt={item.id}  /> )
 
     return (
       <div className="playArea">
