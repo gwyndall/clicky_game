@@ -9,26 +9,38 @@ class App extends React.Component {
   state = {
     cardsData: cardsData,
     score: 0,
-    highScore: 0
+    highScore: 0,
+    clickedArray: []
   };
 
-  handleClick = () => {
-    var clickedArray = [];
-    console.log(this.props.cardsData);
-    
-    if (clickedArray.includes(this.state.cardsData.id)) {
+  handleClick = ({ target }) => {
+    console.log(target.id);
+    var score = this.state.score;
+    var highScore = this.state.highScore;
+
+    if (this.state.clickedArray.includes(target.id)) {
       alert("You Lose!");
-      this.setState.highScore = 0;
+      if (score > highScore) {
+        
+        this.setState({highScore : this.state.score})
+        console.log(this.state.highScore);
+      }
+      this.setState({score: 0, clickedArray: []})
+      
+
     } else {
-      clickedArray.push(this.state.cardsData.id);
+      
       // console.log(this);
       var cardsData = this.state.cardsData;
       cardsData = this.shuffle(cardsData);
-      console.log(clickedArray);
+      
       this.setState({
         cardsData: cardsData,
-        score: this.state.score + 1
+        score: this.state.score + 1,
+        clickedArray: [...this.state.clickedArray, target.id]
       });
+      console.log(this.state.clickedArray);
+      
     }
   };
 
